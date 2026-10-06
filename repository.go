@@ -25,7 +25,7 @@ func (r *BaseRepository[T]) FindAll(ctx context.Context) ([]T, error) {
 	return out, r.DB.WithContext(ctx).Find(&out).Error
 }
 
-func (r *BaseRepository[T]) FindByID(ctx context.Context, id uint) (*T, error) {
+func (r *BaseRepository[T]) FindByID(ctx context.Context, id any) (*T, error) {
 	var out T
 	if err := r.DB.WithContext(ctx).First(&out, id).Error; err != nil {
 		return nil, err
@@ -41,7 +41,7 @@ func (r *BaseRepository[T]) Update(ctx context.Context, data *T) error {
 	return r.DB.WithContext(ctx).Save(data).Error
 }
 
-func (r *BaseRepository[T]) Delete(ctx context.Context, id uint) error {
+func (r *BaseRepository[T]) Delete(ctx context.Context, id any) error {
 	var out T
 	return r.DB.WithContext(ctx).Delete(&out, id).Error
 }
