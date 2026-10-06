@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/kamu/goapp/reqctx"
+	"github.com/yudhitiarizki/goapp/reqctx"
 )
 
 // maxBodyLog caps how many bytes of a request/response body are logged.

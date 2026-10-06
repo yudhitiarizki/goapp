@@ -15,8 +15,8 @@ import (
 	"runtime/debug"
 	"strings"
 
-	"github.com/kamu/goapp/errs"
-	"github.com/kamu/goapp/reqctx"
+	"github.com/yudhitiarizki/goapp/errs"
+	"github.com/yudhitiarizki/goapp/reqctx"
 )
 
 // Log types. The "path" field means something slightly different per type:

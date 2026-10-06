@@ -1,4 +1,4 @@
-module github.com/kamu/goapp
+module github.com/yudhitiarizki/goapp
 
 go 1.25
 

@@ -67,7 +67,7 @@ func Frames(err error) []runtime.Frame {
 	var out []runtime.Frame
 	for {
 		f, more := cf.Next()
-		if f.Function != "" && !strings.Contains(f.Function, "github.com/kamu/goapp/errs") {
+		if f.Function != "" && !strings.Contains(f.Function, "github.com/yudhitiarizki/goapp/errs") {
 			out = append(out, f)
 		}
 		if !more {

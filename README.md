@@ -5,9 +5,6 @@ Uber fx**. Each domain just *declares* itself; the library handles wiring, the D
 connection, migrations, routing, auth, logging, and graceful shutdown. `main.go`
 barely ever changes.
 
-> Current module path: `github.com/kamu/goapp`. Change it if you publish under
-> your own repository path.
-
 ## Features
 
 - **Wiring by type via fx** — constructors are resolved automatically from their
@@ -31,7 +28,7 @@ barely ever changes.
 ## Layout
 
 ```
-goapp/                 # library (module github.com/kamu/goapp)
+goapp/                 # library (module github.com/yudhitiarizki/goapp)
 ├── app.go             # Config, Run, newDB, newEngine, autoMigrate, routing, server
 ├── module.go          # Module / Provide / Handler / Migrate
 ├── config.go          # DatabaseConfig + ConfigDefault (from env)
@@ -49,7 +46,7 @@ goapp/                 # library (module github.com/kamu/goapp)
 package main
 
 import (
-    "github.com/kamu/goapp"
+    "github.com/yudhitiarizki/goapp"
 
     _ "yourapp/internal/domain/pasien"   // blank imports register each domain
     _ "yourapp/internal/domain/dokter"

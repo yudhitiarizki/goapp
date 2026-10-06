@@ -2,8 +2,8 @@ package response
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/kamu/goapp/errs"
-	"github.com/kamu/goapp/reqctx"
+	"github.com/yudhitiarizki/goapp/errs"
+	"github.com/yudhitiarizki/goapp/reqctx"
 )
 
 type Body struct {

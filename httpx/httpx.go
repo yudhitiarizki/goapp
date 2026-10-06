@@ -27,8 +27,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kamu/goapp/errs"
-	"github.com/kamu/goapp/logging"
+	"github.com/yudhitiarizki/goapp/errs"
+	"github.com/yudhitiarizki/goapp/logging"
 )
 
 // Client is a configured JSON HTTP client. Build it with New and reuse it.

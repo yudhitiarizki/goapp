@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/kamu/goapp/logging"
-	"github.com/kamu/goapp/reqctx"
+	"github.com/yudhitiarizki/goapp/logging"
+	"github.com/yudhitiarizki/goapp/reqctx"
 	"go.uber.org/fx"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
