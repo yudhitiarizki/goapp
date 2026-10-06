@@ -53,6 +53,27 @@ func Handler(constructors ...any) Option {
 	return fx.Options(opts...)
 }
 
+// Invoke registers functions that fx runs at startup, after all providers are
+// built. Use it to start background workers (pollers, consumers, schedulers).
+//
+// Do NOT start the worker in the invoke body itself — that runs during wiring,
+// before autoMigrate. Instead take fx.Lifecycle and register an OnStart hook
+// (spawn the goroutine) and an OnStop hook (cancel/stop it), so the worker
+// starts after migrations and stops cleanly on graceful shutdown:
+//
+//	var Module = goapp.Module("poller",
+//	    goapp.Provide(NewPoller),
+//	    goapp.Invoke(func(lc fx.Lifecycle, p *Poller) {
+//	        lc.Append(fx.Hook{
+//	            OnStart: func(ctx context.Context) error { go p.Run(); return nil },
+//	            OnStop:  func(ctx context.Context) error { return p.Stop() },
+//	        })
+//	    }),
+//	)
+func Invoke(funcs ...any) Option {
+	return fx.Invoke(funcs...)
+}
+
 // Migrate registers GORM models for AutoMigrate. Migration runs at startup only
 // when Config.AutoMigrate is true. Models are collected as `any` so different
 // concrete types can share one group.

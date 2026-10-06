@@ -99,6 +99,28 @@ Add one blank import in `main.go`: `_ "yourapp/internal/domain/pasien"`.
 Cross-domain: just add another domain's service type as a constructor parameter;
 fx resolves it automatically.
 
+### Background workers
+
+Use `goapp.Invoke` to register a function fx runs at startup. Start the worker
+in an `OnStart` lifecycle hook (not in the invoke body), so it runs *after*
+migrations and stops cleanly on shutdown:
+
+```go
+var Module = goapp.Module("poller",
+    goapp.Provide(NewPoller),
+    goapp.Invoke(func(lc fx.Lifecycle, p *Poller) {
+        lc.Append(fx.Hook{
+            OnStart: func(ctx context.Context) error { go p.Run(); return nil },
+            OnStop:  func(ctx context.Context) error { return p.Stop() },
+        })
+    }),
+)
+```
+
+This is the one place a domain imports `go.uber.org/fx` directly (for
+`fx.Lifecycle` / `fx.Hook`). Everything else stays fx-free via `goapp.Provide` /
+`Handler` / `Migrate`.
+
 ## Auth
 
 - `reqctx.Middleware()` + `reqctx.Auth(secret)` are installed globally by the library.
